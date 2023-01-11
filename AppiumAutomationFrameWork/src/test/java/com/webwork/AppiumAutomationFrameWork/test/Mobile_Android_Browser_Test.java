@@ -5,6 +5,7 @@ import static com.webwork.AppiumAutomationFrameWork.test.Config.region;
 import java.net.URL;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -14,9 +15,11 @@ import org.testng.annotations.Test;
 import io.appium.java_client.android.AndroidDriver;
 
 public class Mobile_Android_Browser_Test {
-    //    private static final String APP = "/Users/lindsaywalker/Documents/Example_Tests/Android.SauceLabs.Mobile.Sample.app.2.7.0.apk";
+	// To Run on Local Env
+    //    private static final String APP = "C:/Android-Apk/assets/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk";
     //    private static final String APPIUM = "http://localhost:4723/wd/hub"; // See the new URL declared according to region.
-    String appUrl = "https://www.saucedemo.com/"; //added
+    
+	String appUrl = "https://www.saucedemo.com/"; //added
     private AndroidDriver driver;
 //    String usernameID = "test-Username";
 //    String passwordID = "test-Password";
@@ -40,7 +43,9 @@ public class Mobile_Android_Browser_Test {
         } else {
             sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
         }
-        String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl + "/wd/hub";
+       // String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl + "/wd/hub";
+        String SAUCE_REMOTE_URL = "https://oauth-sunilbombe456-804e1:e020e282-b5e9-4db6-9b59-ec05418a5690@ondemand.eu-central-1.saucelabs.com:443/wd/hub";
+        
         url = new URL(SAUCE_REMOTE_URL);
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -48,7 +53,11 @@ public class Mobile_Android_Browser_Test {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion","8.0" );
         capabilities.setCapability("automationName", "UiAutomator2");
-//        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity"); //deleted
+//       capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity"); //deleted
+//        MutableCapabilities sauceOptions = new MutableCapabilities();
+//    	sauceOptions.setCapability("build", "appium-build-FJNRD");
+//    	sauceOptions.setCapability("name", "First Test");
+//    	capabilities.setCapability("sauce:options", sauceOptions);
         capabilities.setCapability("browserName", "Chrome");// added
 //        driver = new AndroidDriver(new URL(APPIUM), capabilities); //removed
         driver = new AndroidDriver(url, capabilities); //added
@@ -82,7 +91,6 @@ public class Mobile_Android_Browser_Test {
     }
 
     public boolean isOnProductsPage() {
-
         return driver.findElement(productTitle).isDisplayed();
     }
 }
