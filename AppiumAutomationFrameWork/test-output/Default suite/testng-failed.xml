@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.webwork.AppiumAutomationFrameWork.test.Mobile_Android_Browser_Test">
+      <class name="com.webwork.AppiumAutomationFrameWork.test.Mobile_Android_Browser_Test2">
         <methods>
-          <include name="loginToSwagLabsTestValid"/>
           <include name="setUp"/>
+          <include name="loginToSwagLabsTestValid"/>
           <include name="teardown"/>
         </methods>
-      </class> <!-- com.webwork.AppiumAutomationFrameWork.test.Mobile_Android_Browser_Test -->
+      </class> <!-- com.webwork.AppiumAutomationFrameWork.test.Mobile_Android_Browser_Test2 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -6,9 +6,9 @@ import java.lang.reflect.Method;
 import java.net.URL;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,9 +22,9 @@ public class Mobile_Android_Browser_Test2 {
     
 	String appUrl = "https://www.saucedemo.com/"; //added
 	
-	//private static final String APP = "Android.SauceLabs.Mobile.Sample.app.2.7.1.apk";
+	private static final String APP = "Android.SauceLabs.Mobile.Sample.app.2.7.1.apk";
 	
-	private static final String APP = "mda-1.0.16-19.apk";
+	//private static final String APP = "mda-1.0.16-19.apk";
 
     private AndroidDriver driver;
 //    String usernameID = "test-Username";
@@ -57,7 +57,7 @@ public class Mobile_Android_Browser_Test2 {
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "8.0");
         capabilities.setCapability("automationName", "UiAutomator2");
-//        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
+        capabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
      //   capabilities.setCapability("appWaitActivity", "com.saucelabs.mydemoapp.MainActivity");
         capabilities.setCapability("app", "storage:filename=" + APP);
         capabilities.setCapability("name", methodName); //added, Method added as parameter
@@ -74,16 +74,22 @@ public class Mobile_Android_Browser_Test2 {
     }
 
     @Test
-    public void loginToSwagLabsTestValid() {
+    public void loginToSwagLabsTestValid() throws InterruptedException {
         System.out.println("Sauce Android Mobile Browser EMU Test - AfterMethod Hook");
 //        driver.get(appUrl);
-        login("standard_user", "secret_sauce");
+        WebDriverWait w = new WebDriverWait(driver,5);
+        // presenceOfElementLocated condition
+        w.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//android.widget.EditText[@content-desc='test-Username']"))));
+        // get text of element and print
+        driver.findElement(By.xpath("//android.widget.EditText[@content-desc='test-Username']")).sendKeys("standard_user");
+        driver.findElement(By.xpath("//android.widget.EditText[@content-desc='test-Password']")).sendKeys("secret_sauce");
+        driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='test-LOGIN']/android.widget.TextView")).click();
 //        // Verification
 //        Assert.assertTrue(isOnProductsPage());
     }
 
     public void login(String user, String pass){
-        driver.get(appUrl);
+       // driver.get(appUrl);
         driver.findElement(usernameInput).sendKeys(user);
         driver.findElement(passwordInput).sendKeys(pass);
         driver.findElement(submitButton).click();
