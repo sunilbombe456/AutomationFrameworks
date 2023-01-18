@@ -45,7 +45,7 @@ public class  Mobile_Android_EMU_Parallel_Test {
         } else {
             sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
         }
-        String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl + "/wd/hub";
+        String SAUCE_REMOTE_URL = "https://oauth-sunilbombe456-804e1:e020e282-b5e9-4db6-9b59-ec05418a5690@ondemand.eu-central-1.saucelabs.com:443/wd/hub";
         url = new URL(SAUCE_REMOTE_URL);
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Android Emulator");
